@@ -40,13 +40,30 @@ function shuffle(array) {
 
 
 function dispalayCardSymbol (event){
- console.log(1);
+  if (event.target.className == 'card') {
+  event.target.className = 'card open show';
+  }
+ }
 
- //event.target
- //card.className = 'card open show';
+function addCardOpenList (event){
+  const openCards = [];
+  openCards.push(event.target);
+   if (openCards.lenght=2) {
+     if(openCards[0].className==openCards[1].className){
+       leaveOpen(openCards);
+     }
+     else {
+
+     }
+   }
 }
-//const card = document.querySelector('.card');
-document.addEventListener("click", dispalayCardSymbol(event));
+
+function leaveOpen (openCards) {
+ openCards[0].className= 'card open show';
+ openCards[1].className= 'card open show';
+}
+
+document.addEventListener("click", dispalayCardSymbol);
 
 
 /*
