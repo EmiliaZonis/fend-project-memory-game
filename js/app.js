@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards*/
  const allCards = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb',
                   'fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb'];
- const cardClassName = 'card';
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -15,7 +15,7 @@ function DisplayCards () {
   shuffle(allCards);
   allCards.forEach(function(currentCard){
    const card = document.createElement('li');
-      card.className = cardClassName;
+      card.className = 'card';
    const cardType = document.createElement('i');
      cardType.className = currentCard;
      card.appendChild(cardType);
@@ -23,9 +23,6 @@ function DisplayCards () {
      deck.insertAdjacentElement('beforeend', card);
     });
 };
-
-
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -40,6 +37,16 @@ function shuffle(array) {
 
     return array;
 }
+
+
+function dispalayCardSymbol (event){
+ console.log(1);
+
+ //event.target
+ //card.className = 'card open show';
+}
+//const card = document.querySelector('.card');
+document.addEventListener("click", dispalayCardSymbol(event));
 
 
 /*
