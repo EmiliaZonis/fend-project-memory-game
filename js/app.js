@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards*/
  const allCards = ['fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb',
                   'fa fa-diamond','fa fa-paper-plane-o','fa fa-anchor','fa fa-bolt','fa fa-cube','fa fa-leaf','fa fa-bicycle','fa fa-bomb'];
-
+let openCards = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -39,31 +39,58 @@ function shuffle(array) {
 }
 
 
-function dispalayCardSymbol (event){
+function cardClicked (event) {
+
   if (event.target.className == 'card') {
-  event.target.className = 'card open show';
+    displayCardSymbol(event.target);
+    addCardOpenList(event.target);
+    }
+  if (openCards.length==2) {
+     const SymbolOne = openCards[0].firstElementChild.className;
+     const SymbolTwo = openCards[1].firstElementChild.className;;
+    if(SymbolOne==SymbolTwo){
+      leaveOpen(openCards);
+    }
+    else {
+      leaveClose(openCards);
+         }
+         openCards = [];
   }
+  }
+
+function displayCardSymbol (targetCard){
+targetCard.className = 'card open show';
  }
 
-function addCardOpenList (event){
-  const openCards = [];
-  openCards.push(event.target);
-   if (openCards.lenght=2) {
-     if(openCards[0].className==openCards[1].className){
-       leaveOpen(openCards);
-     }
-     else {
+function addCardOpenList (targetCard){
 
-     }
-   }
+  openCards.push(targetCard);
+  // console.log(openCards);
+  // console.log(openCards[0].className);
+  //  if (openCards.length==2) {
+  //    if(openCards[0].className==openCards[1].className){
+  //      leaveOpen(openCards);
+  //    }
+  //    else {
+  //      CloseCards(openCards);
+  //         }
+  //
+  //       openCards = [];
+  //  }
+
 }
 
 function leaveOpen (openCards) {
- openCards[0].className= 'card open show';
- openCards[1].className= 'card open show';
+ openCards[0].className= 'card match';
+ openCards[1].className= 'card match';
 }
 
-document.addEventListener("click", dispalayCardSymbol);
+function CloseCards (openCards) {
+ openCards[0].className= 'card';
+ openCards[1].className= 'card';
+}
+
+document.addEventListener("click", cardClicked);
 
 
 /*
