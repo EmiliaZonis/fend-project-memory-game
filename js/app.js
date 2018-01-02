@@ -52,9 +52,13 @@ function cardClicked (event) {
       leaveOpen(openCards);
     }
     else {
-      leaveClose(openCards);
+      setTimeout( function() {
+            leaveClose(openCards);
+            openCards = [];
+          }
+        , 1000);
          }
-         openCards = [];
+
   }
   }
 
@@ -85,7 +89,7 @@ function leaveOpen (openCards) {
  openCards[1].className= 'card match';
 }
 
-function CloseCards (openCards) {
+function leaveClose (openCards) {
  openCards[0].className= 'card';
  openCards[1].className= 'card';
 }
